@@ -16,6 +16,9 @@ dependencies {
     testImplementation("io.rest-assured:kotlin-extensions:4.3.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+
+    testImplementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
+
 }
 
 tasks.withType<KotlinCompile> {

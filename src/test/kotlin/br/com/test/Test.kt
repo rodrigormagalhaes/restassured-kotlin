@@ -7,7 +7,7 @@ import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
 import org.junit.jupiter.api.Test
 
-class Test {
+class Test : BaseTest() {
 
     @Test
     fun `test restassured with Kotlin`() {
@@ -18,7 +18,7 @@ class Test {
             body(request)
             log().all()
         } When {
-            post("https://reqres.in/api/users")
+            post("/api/users")
         } Then {
             statusCode(201)
 
@@ -28,6 +28,6 @@ class Test {
             bodyField("createdAt").notNull()
 
         }
-
     }
 }
+

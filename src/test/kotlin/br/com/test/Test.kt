@@ -1,5 +1,6 @@
 package br.com.test
 
+import br.com.test.request.PaymentRequest
 import br.com.test.request.UserRequest
 import br.com.test.utils.bodyField
 import io.restassured.module.kotlin.extensions.Given
@@ -11,14 +12,16 @@ class Test : BaseTest() {
 
     @Test
     fun `test restassured with Kotlin`() {
-        val request = UserRequest().validUser()
+        //val request = UserRequest().validUser()
+        val request = PaymentRequest().validPaymentWithoutClientId()
 
         Given {
             header("Content-type", "application/json; charset=UTF-8")
             body(request)
             log().all()
         } When {
-            post("/api/users")
+            //post("/api/users")
+            post("/payments")
         } Then {
             statusCode(201)
 
@@ -29,5 +32,7 @@ class Test : BaseTest() {
 
         }
     }
+
+    //TODO criar teste para o payment
 }
 

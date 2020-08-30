@@ -11,7 +11,7 @@ class Test : BaseTest() {
 
     @Test
     fun `test restassured with Kotlin`() {
-        val request = UserRequest().valideUser()
+        val request = UserRequest().validUser()
 
         Given {
             header("Content-type", "application/json; charset=UTF-8")

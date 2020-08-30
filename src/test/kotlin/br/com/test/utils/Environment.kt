@@ -6,10 +6,15 @@ class Environment {
         private var profile: String = ""
 
         fun get(): String {
-            if(profile == "") {
-                profile = System.getProperty("profile")
+            try {
+                if (profile == "") {
+                    profile = System.getProperty("profile")
+                }
+                return profile
+
+            } catch (e: Exception) {
+                throw RuntimeException("É obrigatório passar o profile (-Dprofile=ambiente)", e)
             }
-            return profile
         }
     }
 }

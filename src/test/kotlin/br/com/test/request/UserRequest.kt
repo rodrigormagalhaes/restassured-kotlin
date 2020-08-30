@@ -5,11 +5,10 @@ import br.com.test.utils.Data
 
 class UserRequest {
 
-    fun valideUser(): User {
-        val userReq = User(
+    fun validUser(): User {
+        return User(
                 name = Data.name,
                 jobs = Data.jobs
         )
-        return userReq
     }
 }

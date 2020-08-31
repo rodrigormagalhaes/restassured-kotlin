@@ -7,27 +7,28 @@ import br.com.test.payloads.Holder
 import br.com.test.payloads.Payment
 import br.com.test.payloads.Payments
 import br.com.test.payloads.Type
+import br.com.test.utils.Data
 
 class PaymentRequest {
 
     fun validPayment(): Payment {
         return Payment(
-                clientId = "ACD123",
-                referenceId = "1239878889",
+                clientId = Data.clientId,
+                referenceId = Data.referenceId,
                 amount = Amount(
-                        value = 500,
+                        value = Data.value.toLong(),
                         currency = Currency.BRL
                 ),
                 payment = Payments(
                         type = Type.CREDIT_CARD,
-                        installments = 3,
+                        installments = Data.installments.toInt(),
                         card = Card(
-                                number = "4532101557982126",
-                                exp_month = "12",
-                                exp_year = "2025",
-                                cvv = "123",
+                                number = Data.number,
+                                exp_month = Data.exp_month,
+                                exp_year = Data.exp_year,
+                                cvv = Data.cvv,
                                 holder = Holder(
-                                        name = "Teste Teste"
+                                        name = Data.holderName
                                 )
                         )
                 )

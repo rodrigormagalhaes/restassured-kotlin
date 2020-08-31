@@ -1,4 +1,4 @@
-package br.com.test
+package br.com.test.tests
 
 import br.com.test.utils.Data
 import io.restassured.RestAssured
@@ -11,7 +11,7 @@ abstract class BaseTest {
         @BeforeAll
         @JvmStatic
         fun before() {
-            RestAssured.baseURI = Data.url
+            RestAssured.baseURI = Data.reqResUrl
         }
     }
 

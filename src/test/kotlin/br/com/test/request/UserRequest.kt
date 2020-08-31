@@ -8,7 +8,7 @@ class UserRequest {
     fun validUser(): User {
         return User(
                 name = Data.name,
-                jobs = Data.jobs
+                job = Data.job
         )
     }
 }

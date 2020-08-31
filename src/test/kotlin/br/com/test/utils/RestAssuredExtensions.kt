@@ -14,6 +14,10 @@ data class PreValidatableResponse(
     fun notNull() {
         validatableResponse.body(bodyField, Matchers.notNullValue())
     }
+
+    fun isNull() {
+        validatableResponse.body(bodyField, Matchers.nullValue())
+    }
 }
 
 fun ValidatableResponse.bodyField(field: String) = PreValidatableResponse(

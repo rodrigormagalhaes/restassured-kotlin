@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.4.0"
-    application
 }
 
 repositories {
@@ -16,6 +15,7 @@ dependencies {
     testImplementation("io.rest-assured:kotlin-extensions:4.3.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
 
     testImplementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
 
@@ -30,4 +30,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    systemProperty("profile", System.getProperty("profile"))
 }

@@ -31,7 +31,7 @@ pipeline {
                             keepAll              : true,
                             reportDir            : 'build/reports/tests/test',
                             reportFiles          : 'index.html',
-                            reportName           : "Unit Tests Report"
+                            reportName           : "Tests Report"
                     ])
                 }
             }

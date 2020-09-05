@@ -2,7 +2,7 @@ pipeline {
     agent { docker { image 'adoptopenjdk/openjdk14' } }
 
     tools {
-        jdk 'java14'
+        jdk 'openjdk14'
     }
 
     stages {

@@ -9,9 +9,11 @@ pipeline {
         gradle = "./gradlew"
     }
 
-    stage('Test') {
-        steps {
-            sh "${gradle} clean test -Dprofile=qa"
+    stages {
+        stage('Test') {
+            steps {
+                sh "${gradle} clean test -Dprofile=qa"
+            }
         }
     }
 }

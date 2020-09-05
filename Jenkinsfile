@@ -1,27 +1,17 @@
 pipeline {
-    agent { docker { image 'adoptopenjdk/openjdk14' } }
-
-    stages {
-        stage('Test Rodrigo') {
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-            }
+    agent {
+        docker {
+            image "adoptopenjdk/openjdk14"
         }
+    }
 
-        stage('Config') {
-            steps {
-                echo "PATH = ${PATH}"
-            }
+    environment {
+        gradle = "./gradlew"
+    }
+
+    stage("Test") {
+        steps {
+            sh "${gradle} clean test -Dprofile=qa"
         }
-
-        stage('Test') {
-            steps {
-                sh './gradlew --version'
-                sh './gradlew clean test -Dprofile=qa'
-            }
-        }
-
-
     }
 }

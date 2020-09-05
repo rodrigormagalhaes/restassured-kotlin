@@ -11,14 +11,13 @@ pipeline {
 
         stage('Config') {
             steps {
-                echo "rodrigo"
                 echo "PATH = ${PATH}"
             }
         }
 
         stage('Test') {
             steps {
-                sh '${gradle} clean test -Dprofile=qa'
+                sh './gradlew clean test -Dprofile=qa'
             }
         }
 

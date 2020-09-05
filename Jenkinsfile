@@ -10,9 +10,10 @@ pipeline {
 
         stage('Config') {
             steps {
-                def javaHome = tool 'java14'
-                env.PATH = "${javaHome}/bin:${env.PATH}"
-                env.JAVA_HOME = "${javaHome}"
+                tools {
+                    jdk 'java14'
+                }
+                echo "PATH = ${PATH}"
             }
         }
 

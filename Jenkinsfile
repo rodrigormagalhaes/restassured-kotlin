@@ -1,5 +1,10 @@
 pipeline {
     agent { docker { image 'adoptopenjdk/openjdk14' } }
+
+    tools {
+        jdk 'java14'
+    }
+
     stages {
         stage('Test Rodrigo') {
             steps {
@@ -10,9 +15,6 @@ pipeline {
 
         stage('Config') {
             steps {
-                tools {
-                    jdk 'java14'
-                }
                 echo "PATH = ${PATH}"
             }
         }

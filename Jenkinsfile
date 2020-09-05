@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'openjdk13' } }
+    agent { docker { image 'adoptopenjdk/openjdk14' } }
     stages {
         stage('Test Rodrigo') {
             steps {

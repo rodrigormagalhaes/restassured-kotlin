@@ -4,5 +4,4 @@ pipeline {
             echo 'Hello, JDK'
             sh 'java -version'
         }
-    }
 }

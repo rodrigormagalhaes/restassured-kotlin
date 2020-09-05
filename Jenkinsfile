@@ -1,10 +1,6 @@
 pipeline {
     agent { docker { image 'adoptopenjdk/openjdk14' } }
 
-    tools {
-        gradle "GRADLE_LATEST"
-    }
-
     stages {
         stage('Test Rodrigo') {
             steps {
@@ -22,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'gradle --version'
-                sh './gradlew clean test -Dprofile=qa'
+                sh 'gradle clean test -Dprofile=qa'
             }
         }
 

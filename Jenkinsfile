@@ -23,12 +23,13 @@ pipeline {
             }
             post {
                 always {
-                    publishHTML(
-                        [
-                            reportDir: 'build/reports/tests/test',
-                            reportFiles: 'index.html', reportName: 'HTML Report'
-                        ]
-                    )
+                    publishHTML (target : [allowMissing: false,
+                     alwaysLinkToLastBuild: true,
+                     keepAll: true,
+                     reportDir: 'reports',
+                     reportFiles: 'myreport.html',
+                     reportName: 'My Reports',
+                     reportTitles: 'The Report'])
                 }
             }
         }

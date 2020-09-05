@@ -17,8 +17,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'gradle --version'
-                sh 'gradle clean test -Dprofile=qa'
+                sh './gradlew --version'
+                sh './gradlew clean test -Dprofile=qa'
             }
         }
 

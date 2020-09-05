@@ -19,7 +19,17 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh "${gradle} clean test -Dprofile"
+                sh "${gradle} clean test -Dprofile=qa"
+            }
+            post {
+                always {
+                    publishHTML(
+                        [
+                            reportDir: 'build/reports/tests/test',
+                            reportFiles: 'index.html', reportName: 'HTML Report'
+                        ]
+                    )
+                }
             }
         }
     }

@@ -14,6 +14,12 @@
 ./gradlew clean test -Dprofile=qa
 ```
 
+- **Executar uma única classe de teste por linha de comando**:
+```
+./gradlew clean test --tests PaymentTest -Dprofile=qa
+```
+
+
 #### Tecnologias
 
 - [Rest Assured](https://rest-assured.io/)

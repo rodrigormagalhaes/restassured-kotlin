@@ -1,0 +1,63 @@
+package config
+
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.module.kotlin.readValue
+import java.io.InputStream
+
+object YamlLoader {
+
+    private val mapper = ObjectMapper(YAMLFactory()).findAndRegisterModules()
+
+    fun load(): EnvironmentConfig {
+
+        val env = System.getProperty("env") ?: "qa"
+
+        val inputStream: InputStream =
+            this::class.java.classLoader
+                .getResourceAsStream("application-$env.yaml")
+                ?: throw RuntimeException("Arquivo application-$env.yaml não encontrado")
+
+        return mapper.readValue(inputStream)
+    }
+}
+
+
+package base
+
+import config.YamlLoader
+import io.qameta.allure.restassured.AllureRestAssured
+import io.restassured.RestAssured
+import org.junit.jupiter.api.BeforeAll
+
+abstract class BaseTest {
+
+    companion object {
+
+        lateinit var config: config.EnvironmentConfig
+
+        @JvmStatic
+        @BeforeAll
+        fun setup() {
+
+            // Carrega config do ambiente
+            config = YamlLoader.load()
+
+            // Configura RestAssured global
+            RestAssured.baseURI = config.mib.baseUrl
+
+            // Configura Allure
+            RestAssured.filters(
+                AllureRestAssured()
+            )
+        }
+    }
+}
+
+
+
+
+
+
+
+

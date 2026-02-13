@@ -6,6 +6,7 @@ import io.restassured.response.Response
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.When
 import io.restassured.module.kotlin.extensions.Then
+import java.io.ByteArrayInputStream
 
 object MibClient {
 
@@ -17,7 +18,7 @@ object MibClient {
     ): Response {
 
         val defaultHeaders = mapOf(
-            "accept" to "application/xxx.xxx.xxx.$acceptVersion+json",
+            "accept" to "application/vnd.xxx.mib-insurance.$acceptVersion+json",
             "x-user-id" to "123",
             "x-app-version" to "123.123.555",
             "x-user-type" to "pj"
@@ -25,17 +26,23 @@ object MibClient {
 
         val finalHeaders = defaultHeaders + headers
 
-        val response: Response = Given {
+        val response = Given {
             baseUri(baseUrl)
             headers(finalHeaders)
         } When {
             get("/platform/products")
         } Then {
-            // ⚠️ não validar status aqui
+            // sem validação aqui
         }.extract().response()
 
-        Allure.addAttachment("Response Body", "application/json", response.asString())
+        Allure.addAttachment(
+            "Response Body",
+            "application/json",
+            ByteArrayInputStream(response.asByteArray()),
+            ".json"
+        )
 
         return response
     }
 }
+

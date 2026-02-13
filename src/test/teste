@@ -5,7 +5,6 @@ import io.qameta.allure.Allure
 import io.restassured.response.Response
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.When
-import io.restassured.module.kotlin.extensions.Then
 import java.io.ByteArrayInputStream
 
 object MibClient {
@@ -26,14 +25,13 @@ object MibClient {
 
         val finalHeaders = defaultHeaders + headers
 
-        val response = Given {
-            baseUri(baseUrl)
-            headers(finalHeaders)
-        } When {
-            get("/platform/products")
-        } Then {
-            // sem validação aqui
-        }.extract().response()
+        val response: Response =
+            Given {
+                baseUri(baseUrl)
+                headers(finalHeaders)
+            } When {
+                get("/platform/products")
+            }
 
         Allure.addAttachment(
             "Response Body",
@@ -45,4 +43,5 @@ object MibClient {
         return response
     }
 }
+
 
